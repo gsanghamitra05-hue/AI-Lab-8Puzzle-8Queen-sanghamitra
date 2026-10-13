@@ -1,0 +1,40 @@
+from collections import deque
+
+CAP_A = 4
+CAP_B = 3
+TARGET = 2
+
+def water_jug():
+    start = (0, 0)
+    queue = deque([(start, [start])])
+    visited = {start}
+
+    while queue:
+        (a, b), path = queue.popleft()
+
+        if a == TARGET:
+            print("Steps to get 2 litres in the 4L jug:")
+            for step in path:
+                print(step)
+            return
+
+        pour_a_to_b = min(a, CAP_B - b)
+        pour_b_to_a = min(b, CAP_A - a)
+
+        next_states = [
+            (CAP_A, b),
+            (a, CAP_B),
+            (0, b),
+            (a, 0),
+            (a - pour_a_to_b, b + pour_a_to_b),
+            (a + pour_b_to_a, b - pour_b_to_a)
+        ]
+
+        for state in next_states:
+            if state not in visited:
+                visited.add(state)
+                queue.append((state, path + [state]))
+
+    print("No solution found.")
+
+water_jug()
