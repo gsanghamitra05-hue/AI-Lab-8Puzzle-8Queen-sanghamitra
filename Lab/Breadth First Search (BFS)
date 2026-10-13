@@ -1,0 +1,42 @@
+
+from collections import deque
+
+def bfs(graph, start, goal):
+    visited = set()
+    queue = deque([[start]])
+
+    while queue:
+        path = queue.popleft()
+        node = path[-1]
+
+        if node == goal:
+            print("Path found:", path)
+            return
+
+        if node not in visited:
+            visited.add(node)
+
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    new_path = path + [neighbor]
+                    queue.append(new_path)
+
+    print("No path found")
+
+
+# Graph representation
+graph = {
+    'A': ['B', 'C'],
+    'B': ['D', 'E'],
+    'C': ['F', 'G'],
+    'D': [],
+    'E': [],
+    'F': [],
+    'G': []
+}
+
+# Starting node and goal node
+start = 'A'
+goal = 'G'
+
+bfs(graph, start, goal)
