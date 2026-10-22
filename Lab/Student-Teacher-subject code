@@ -1,0 +1,14 @@
+student(Arun, CS101).
+student(Ravi, CS102).
+student(Priya, CS101).
+
+teacher(John, CS101).
+teacher(Meena, CS102).
+
+subject(CS101, AI).
+subject(CS102, Python).
+
+student_details(Student, Teacher, Subject) :-
+    student(Student, Code),
+    teacher(Teacher, Code),
+    subject(Code, Subject).
