@@ -1,0 +1,48 @@
+from collections import deque
+def solve_8_puzzle(start, goal):
+    queue = deque([(start, [])])
+    visited = set()
+    visited.add(tuple(start))
+    while queue:
+        state, path = queue.popleft()
+        if state == goal:
+            return path + [state]
+        zero = state.index(0)
+        row = zero // 3
+        col = zero % 3
+        moves = []
+        if row > 0:
+            moves.append(zero - 3)   # Up
+        if row < 2:
+            moves.append(zero + 3)   # Down
+        if col > 0:
+            moves.append(zero - 1)   # Left
+        if col < 2:
+            moves.append(zero + 1)   # Right
+        for new_zero in moves:
+            new_state = state.copy()
+            new_state[zero], new_state[new_zero] = \
+                new_state[new_zero], new_state[zero]
+            if tuple(new_state) not in visited:
+                visited.add(tuple(new_state))
+                queue.append((new_state, path + [state]))
+    return None
+start = [1, 2, 3,
+         4, 0, 6,
+         7, 5, 8]
+
+goal = [1, 2, 3,
+        4, 5, 6,
+        7, 8, 0]
+
+solution = solve_8_puzzle(start, goal)
+
+if solution:
+    print("Solution:")
+    for state in solution:
+        print(state[0:3])
+        print(state[3:6])
+        print(state[6:9])
+        print()
+else:
+    print("No solution found")
