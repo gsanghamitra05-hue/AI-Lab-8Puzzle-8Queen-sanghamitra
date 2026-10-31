@@ -1,0 +1,33 @@
+parent(john, mary).
+parent(john, david).
+parent(mary, alice).
+parent(david, peter).
+
+male(john).
+male(david).
+male(peter).
+
+female(mary).
+female(alice).
+
+father(X, Y) :-
+    parent(X, Y),
+    male(X).
+
+mother(X, Y) :-
+    parent(X, Y),
+    female(X).
+
+grandparent(X, Z) :-
+    parent(X, Y),
+    parent(Y, Z).
+
+sibling(X, Y) :-
+    parent(Z, X),
+    parent(Z, Y),
+    X \= Y.
+
+% Queries:
+% ?- father(john, mary).
+% ?- grandparent(john, alice).
+% ?- sibling(mary, david).
