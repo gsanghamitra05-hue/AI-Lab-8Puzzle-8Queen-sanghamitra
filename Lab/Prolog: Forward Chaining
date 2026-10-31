@@ -1,0 +1,22 @@
+fact(has_fever).
+fact(has_cough).
+
+rule(flu, [has_fever, has_cough]).
+rule(needs_rest, [flu]).
+
+known(X) :-
+    fact(X).
+
+known(X) :-
+    rule(X, Conditions),
+    check_all(Conditions).
+
+check_all([]).
+
+check_all([H|T]) :-
+    known(H),
+    check_all(T).
+
+% Queries:
+% ?- known(flu).
+% ?- known(needs_rest).
