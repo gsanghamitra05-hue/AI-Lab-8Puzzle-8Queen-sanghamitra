@@ -1,0 +1,14 @@
+at(monkey, floor).
+at(box, corner).
+at(banana, ceiling).
+
+can_reach_banana :-
+    at(monkey, floor),
+    at(box, corner),
+    write('Monkey moves to the box.'), nl,
+    write('Monkey pushes the box below the banana.'), nl,
+    write('Monkey climbs the box.'), nl,
+    write('Monkey grabs the banana.'), nl,
+    write('Banana obtained!'), nl.
+
+% Query: ?- can_reach_banana.
