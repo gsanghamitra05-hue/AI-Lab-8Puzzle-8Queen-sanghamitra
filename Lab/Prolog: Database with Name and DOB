@@ -1,0 +1,4 @@
+person(John, '2002-05-10').
+person(Ravi, '2003-08-15').
+person(Anu, '2004-01-20').
+person(Priya, '2002-12-25').
