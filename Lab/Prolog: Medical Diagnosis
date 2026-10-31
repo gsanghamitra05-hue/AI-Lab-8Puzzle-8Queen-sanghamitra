@@ -1,0 +1,18 @@
+symptom(ravi, fever).
+symptom(ravi, cough).
+symptom(anu, headache).
+symptom(anu, fever).
+
+disease(Person, flu) :-
+    symptom(Person, fever),
+    symptom(Person, cough).
+
+disease(Person, possible_fever_illness) :-
+    symptom(Person, fever).
+
+disease(Person, possible_headache_condition) :-
+    symptom(Person, headache).
+
+% Queries:
+% ?- disease(ravi, Disease).
+% ?- disease(anu, Disease).
