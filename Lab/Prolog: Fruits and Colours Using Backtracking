@@ -1,0 +1,16 @@
+fruit(apple).
+fruit(banana).
+fruit(orange).
+fruit(grapes).
+
+colour(apple, red).
+colour(banana, yellow).
+colour(orange, orange).
+colour(grapes, purple).
+
+fruit_colour(Fruit, Colour) :-
+    fruit(Fruit),
+    colour(Fruit, Colour).
+
+% Query: ?- fruit_colour(Fruit, Colour).
+% Press ; to see the next result.
